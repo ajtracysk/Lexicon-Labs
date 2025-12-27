@@ -13,6 +13,8 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const card = cardRef.current;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -25,13 +27,13 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
       { threshold: 0.1 }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    if (card) {
+      observer.observe(card);
     }
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
+      if (card) {
+        observer.unobserve(card);
       }
     };
   }, []);
@@ -42,18 +44,15 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
       className={cn(
         "feature-card glass-card opacity-0 p-4 sm:p-6",
         "lg:hover:shadow-lg",
-        "transition-all duration-300"
+        "transition-all duration-300",
+        "bg-white border-primary-border"
       )}
-      style={{ 
-        animationDelay: `${0.1 * index}s`,
-        backgroundColor: "#FFFFFF",
-        borderColor: "#E8D4C0"
-      }}
+      style={{ animationDelay: `${0.1 * index}s` }}
     >
-      <div className="rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5" style={{ backgroundColor: "#F5E6D3", color: "#D4A574" }}>
+      <div className="rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5 bg-primary-light text-primary-amber">
         {icon}
       </div>
-      <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3" style={{ color: "#1A1A18" }}>{title}</h3>
+      <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-primary-text">{title}</h3>
       <p className="text-gray-600 text-sm sm:text-base">{description}</p>
     </div>
   );
@@ -63,6 +62,8 @@ const Features = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const section = sectionRef.current;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -80,28 +81,27 @@ const Features = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (section) {
+      observer.observe(section);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (section) {
+        observer.unobserve(section);
       }
     };
   }, []);
 
   return (
     <section
-      className="py-12 sm:py-16 md:py-20 pb-0 relative"
+      className="py-12 sm:py-16 md:py-20 pb-0 relative bg-primary-bg"
       id="features"
       ref={sectionRef}
-      style={{ backgroundColor: "#FAFAF8" }}
     >
       <div className="section-container">
         <div className="text-center mb-10 sm:mb-16">
           <div className="atlas-chip mx-auto mb-3 sm:mb-4 opacity-0 fade-in-element">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full text-white mr-2" style={{ backgroundColor: "#D4A574" }}>
+            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full text-white mr-2 bg-primary-amber">
               03
             </span>
             <span>Features</span>

@@ -1,9 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
-
-
-
 @import "tailwindcss";
+
+/* Custom color utilities for inline style replacement */
+@theme {
+  --color-primary-bg: #FAFAF8;
+  --color-primary-text: #1A1A18;
+  --color-primary-amber: #D4A574;
+  --color-primary-amber-dark: #C4956A;
+  --color-primary-sage: #7A9B8E;
+  --color-primary-coral: #E8B4A8;
+  --color-primary-light: #F5E6D3;
+  --color-primary-border: #E8D4C0;
+}
 
 @layer base {
   :root {
@@ -379,3 +386,24 @@
   transition: transform 0.1s ease-out;
 }
 
+/* Reduced motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-card-enter,
+  .fadeIn {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .transition-all,
+  .transition-transform,
+  .transition-colors {
+    transition: none !important;
+  }
+
+  .hover-lift:hover,
+  .feature-card:hover {
+    transform: none !important;
+  }
+}

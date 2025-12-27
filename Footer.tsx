@@ -2,20 +2,20 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="text-white py-12 mt-16 sm:mt-20 md:mt-24" style={{ backgroundColor: "#1A1A18" }}>
+    <footer className="text-white py-12 mt-16 sm:mt-20 md:mt-24 bg-primary-text">
       <div className="container px-6 lg:px-8 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div className="md:col-span-2">
             <div className="mb-4">
-              <h3 className="text-3xl font-bold" style={{ color: "#D4A574" }}>
+              <h3 className="text-3xl font-bold text-primary-amber">
                 EduHub
               </h3>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
               A collection of interactive, single-file HTML web applications designed to make ESL learning accessible, engaging, and effective for learners worldwide.
             </p>
-            <p className="font-semibold" style={{ color: "#D4A574" }}>Learn Anywhere, Anytime</p>
+            <p className="font-semibold text-primary-amber">Learn Anywhere, Anytime</p>
           </div>
 
           {/* Quick Links */}
@@ -25,10 +25,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#hero"
-                  className="text-gray-300 hover:transition-colors"
-                  style={{ "--hover-color": "#D4A574" } as any}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#D4A574")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#D1D5DB")}
+                  className="text-gray-300 hover:text-primary-amber transition-colors"
                 >
                   Home
                 </a>
@@ -36,9 +33,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#apps"
-                  className="text-gray-300 hover:transition-colors"
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#D4A574")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#D1D5DB")}
+                  className="text-gray-300 hover:text-primary-amber transition-colors"
                 >
                   Why Our Apps
                 </a>
@@ -46,9 +41,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#features"
-                  className="text-gray-300 hover:transition-colors"
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#D4A574")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#D1D5DB")}
+                  className="text-gray-300 hover:text-primary-amber transition-colors"
                 >
                   Features
                 </a>
@@ -56,9 +49,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#testimonials"
-                  className="text-gray-300 hover:transition-colors"
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#D4A574")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#D1D5DB")}
+                  className="text-gray-300 hover:text-primary-amber transition-colors"
                 >
                   Testimonials
                 </a>
@@ -66,14 +57,30 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Resources */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li>Learning Tips</li>
-              <li>App Documentation</li>
-              <li>Community Forum</li>
-              <li>Feedback & Support</li>
+            <ul className="space-y-2">
+              <li>
+                <a href="#" className="text-gray-300 hover:text-primary-amber transition-colors">
+                  Learning Tips
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-primary-amber transition-colors">
+                  App Documentation
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-primary-amber transition-colors">
+                  Community Forum
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-primary-amber transition-colors">
+                  Feedback & Support
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -86,25 +93,19 @@ const Footer = () => {
           <div className="flex space-x-6">
             <a
               href="#"
-              className="text-gray-400 hover:transition-colors text-sm"
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#D4A574")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#9CA3AF")}
+              className="text-gray-400 hover:text-primary-amber transition-colors text-sm"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="text-gray-400 hover:transition-colors text-sm"
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#D4A574")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#9CA3AF")}
+              className="text-gray-400 hover:text-primary-amber transition-colors text-sm"
             >
               Terms of Service
             </a>
             <a
               href="#"
-              className="text-gray-400 hover:transition-colors text-sm"
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#D4A574")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#9CA3AF")}
+              className="text-gray-400 hover:text-primary-amber transition-colors text-sm"
             >
               Support
             </a>

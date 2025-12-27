@@ -1,5 +1,3 @@
-import { useRef } from "react";
-
 const testimonials = [
   {
     content:
@@ -45,43 +43,40 @@ const TestimonialCard = ({
   gradient,
 }: TestimonialCardProps) => {
   return (
-    <div
+    <blockquote
       className={`${gradient} rounded-lg p-8 h-full flex flex-col justify-between text-white transform transition-transform duration-300 hover:-translate-y-2 relative overflow-hidden`}
     >
       <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
 
       <div className="relative z-0">
         <p className="text-xl mb-8 font-medium leading-relaxed pr-20">{`"${content}"`}</p>
-        <div>
-          <h4 className="font-semibold text-xl">{author}</h4>
-          <p className="text-white/80">{role}</p>
-        </div>
+        <footer>
+          <cite className="font-semibold text-xl not-italic block">{author}</cite>
+          <span className="text-white/80">{role}</span>
+        </footer>
       </div>
-    </div>
+    </blockquote>
   );
 };
 
 const Testimonials = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
   return (
     <section
-      className="py-12 relative"
+      className="py-12 relative bg-primary-bg"
       id="testimonials"
-      ref={sectionRef}
-      style={{ backgroundColor: "#FAFAF8" }}
+      aria-labelledby="testimonials-heading"
     >
       <div className="container px-6 lg:px-8 mx-auto">
         <div className="flex items-center gap-4 mb-6">
           <div className="atlas-chip">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full text-white mr-2" style={{ backgroundColor: "#D4A574" }}>
+            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full text-white mr-2 bg-primary-amber">
               04
             </span>
             <span>Testimonials</span>
           </div>
         </div>
 
-        <h2 className="text-5xl font-bold mb-12 text-left" style={{ color: "#1A1A18" }}>
+        <h2 id="testimonials-heading" className="text-5xl font-bold mb-12 text-left text-primary-text">
           Loved by Learners
         </h2>
 

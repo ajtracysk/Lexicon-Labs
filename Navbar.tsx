@@ -16,6 +16,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Cleanup body overflow on unmount to prevent scroll lock
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     document.body.style.overflow = !isMenuOpen ? "hidden" : "";
@@ -53,7 +60,7 @@ const Navbar = () => {
           onClick={(e) => handleNavClick({ isHome: true }, e)}
           aria-label="EduHub - ESL Education Apps"
         >
-          <span className="text-2xl sm:text-3xl md:text-4xl font-bold" style={{ color: "#D4A574" }}>
+          <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-amber">
             EduHub
           </span>
         </a>
@@ -74,41 +81,38 @@ const Navbar = () => {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden p-3 focus:outline-none"
-          style={{ color: "#1A1A18" }}
+          className="md:hidden p-3 text-primary-text focus:outline-none focus:ring-2 focus:ring-primary-amber focus:ring-offset-2 rounded-lg"
           onClick={toggleMenu}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile Navigation */}
-      <div
+      <nav
         className={cn(
-          "fixed inset-0 z-40 flex flex-col pt-16 px-6 md:hidden transition-all duration-300 ease-in-out",
+          "fixed inset-0 z-40 flex flex-col pt-16 px-6 md:hidden transition-all duration-300 ease-in-out bg-primary-bg",
           isMenuOpen
             ? "opacity-100 translate-x-0"
             : "opacity-0 translate-x-full pointer-events-none"
         )}
-        style={{ backgroundColor: "#FAFAF8" }}
+        aria-hidden={!isMenuOpen}
       >
-        <nav className="flex flex-col space-y-8 items-center mt-8">
+        <div className="flex flex-col space-y-8 items-center mt-8">
           {navigationItems.map((item) => (
             <a
               key={item.id}
               href={item.href}
-              className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors"
-              style={{ color: "#1A1A18" }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#F5E6D3")}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+              className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors text-primary-text hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-primary-amber focus:ring-offset-2"
               onClick={(e) => handleNavClick(item, e)}
             >
               {item.label}
             </a>
           ))}
-        </nav>
-      </div>
+        </div>
+      </nav>
     </header>
   );
 };

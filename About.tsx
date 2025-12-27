@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 
+// Card scroll thresholds for revealing stacked cards
+const CARD_THRESHOLDS = {
+  THIRD_CARD: 0.66,
+  SECOND_CARD: 0.33,
+} as const;
+
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const [isIntersecting, setIsIntersecting] = useState(false);
   const ticking = useRef(false);
-  const lastScrollY = useRef(0);
 
   const cardStyle = {
     height: "60vh",
@@ -18,6 +23,8 @@ const About = () => {
   };
 
   useEffect(() => {
+    const section = sectionRef.current;
+
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -26,14 +33,12 @@ const About = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (section) {
+      observer.observe(section);
     }
 
     const handleScroll = () => {
       if (!ticking.current) {
-        lastScrollY.current = window.scrollY;
-
         window.requestAnimationFrame(() => {
           if (!sectionRef.current) return;
 
@@ -49,9 +54,9 @@ const About = () => {
             );
           }
 
-          if (progress >= 0.66) {
+          if (progress >= CARD_THRESHOLDS.THIRD_CARD) {
             setActiveCardIndex(2);
-          } else if (progress >= 0.33) {
+          } else if (progress >= CARD_THRESHOLDS.SECOND_CARD) {
             setActiveCardIndex(1);
           } else {
             setActiveCardIndex(0);
@@ -69,8 +74,8 @@ const About = () => {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (section) {
+        observer.unobserve(section);
       }
     };
   }, []);
@@ -86,22 +91,18 @@ const About = () => {
   ];
 
   return (
-    <div ref={sectionRef} className="relative" style={{ height: "300vh" }}>
+    <div ref={sectionRef} className="relative h-[300vh]">
       <section
-        className="w-full h-screen py-10 md:py-16 sticky top-0 overflow-hidden"
+        className="w-full h-screen py-10 md:py-16 sticky top-0 overflow-hidden bg-primary-bg"
         id="apps"
-        style={{ backgroundColor: "#FAFAF8" }}
       >
         <div className="container px-6 lg:px-8 mx-auto h-full flex flex-col">
           <div className="mb-2 md:mb-3">
             <div className="flex items-center gap-4 mb-2 md:mb-2 pt-8 sm:pt-6 md:pt-4">
               <div
-                className="atlas-chip opacity-0 animate-fade-in"
-                style={{
-                  animationDelay: "0.1s",
-                }}
+                className="atlas-chip opacity-0 animate-fade-in [animation-delay:0.1s]"
               >
-                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full text-white mr-2" style={{ backgroundColor: "#D4A574" }}>
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full text-white mr-2 bg-primary-amber">
                   02
                 </span>
                 <span>Why Choose Us</span>
